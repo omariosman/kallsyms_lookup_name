@@ -1,0 +1,50 @@
+make -C /usr/src/linux-headers-4.19.0-13-amd64 SUBDIRS=/root/Exercise_7 modules
+make[1]: Entering directory '/usr/src/linux-headers-4.19.0-13-amd64'
+  CC [M]  /root/Exercise_7/ex7.o
+/root/Exercise_7/ex7.c: In function ‘open_file_for_read’:
+/root/Exercise_7/ex7.c:53:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  int err = 0;
+  ^~~
+/root/Exercise_7/ex7.c: In function ‘read_from_file_until’:
+/root/Exercise_7/ex7.c:83:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  int i;
+  ^~~
+/root/Exercise_7/ex7.c: In function ‘hello_init’:
+/root/Exercise_7/ex7.c:115:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  struct myfile* sysmap = open_file_for_read("/boot/System.map-4.19.0-13-amd64");
+  ^~~~~~
+/root/Exercise_7/ex7.c:119:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  char *word;
+  ^~~~
+/root/Exercise_7/ex7.c:132:38: error: implicit declaration of function ‘kallsyms_lookup_table’; did you mean ‘kallsyms_lookup_name’? [-Werror=implicit-function-declaration]
+        unsigned long sys_call_addr = kallsyms_lookup_table("sys_call_table");
+                                      ^~~~~~~~~~~~~~~~~~~~~
+                                      kallsyms_lookup_name
+/root/Exercise_7/ex7.c:132:8: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+        unsigned long sys_call_addr = kallsyms_lookup_table("sys_call_table");
+        ^~~~~~~~
+/root/Exercise_7/ex7.c:147:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  unsigned long laddr;
+  ^~~~~~~~
+/root/Exercise_7/ex7.c:148:9: warning: passing argument 1 of ‘sscanf’ makes pointer from integer without a cast [-Wint-conversion]
+  sscanf(sys_call_addr, "%lx", &laddr);
+         ^~~~~~~~~~~~~
+In file included from /usr/src/linux-headers-4.19.0-13-common/include/linux/list.h:9,
+                 from /usr/src/linux-headers-4.19.0-13-common/include/linux/module.h:9,
+                 from /root/Exercise_7/ex7.c:2:
+/usr/src/linux-headers-4.19.0-13-common/include/linux/kernel.h:517:12: note: expected ‘const char *’ but argument is of type ‘long unsigned int’
+ int sscanf(const char *, const char *, ...);
+            ^~~~~~~~~~~~
+/root/Exercise_7/ex7.c:154:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  unsigned long mycr = read_cr0();
+  ^~~~~~~~
+/root/Exercise_7/ex7.c:115:17: warning: unused variable ‘sysmap’ [-Wunused-variable]
+  struct myfile* sysmap = open_file_for_read("/boot/System.map-4.19.0-13-amd64");
+                 ^~~~~~
+cc1: some warnings being treated as errors
+make[4]: *** [/usr/src/linux-headers-4.19.0-13-common/scripts/Makefile.build:315: /root/Exercise_7/ex7.o] Error 1
+make[3]: *** [/usr/src/linux-headers-4.19.0-13-common/Makefile:1565: _module_/root/Exercise_7] Error 2
+make[2]: *** [Makefile:146: sub-make] Error 2
+make[1]: *** [Makefile:8: all] Error 2
+make[1]: Leaving directory '/usr/src/linux-headers-4.19.0-13-amd64'
+make: *** [Makefile:6: all] Error 2
